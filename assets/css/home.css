@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: grey;
+    margin-top: 25px;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 40px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#details {
+
+    border: 1px solid black;
+    display: flex;
+    margin: auto;
+    width: 30rem;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+#list-li :hover {
+    background-color: lightblue;
+}
+
+form {
+    text-align: center;
+
+}
