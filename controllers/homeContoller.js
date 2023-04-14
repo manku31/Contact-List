@@ -1,22 +1,28 @@
-const Contact = require('../models/Contact');        // ==> path of Schema
+const Contact = require('../models/Contact');
 
 var contactList = []
 
-module.exports.home = function (req, res) {
-    return res.render("home", {
-        title : "Contact List",
-        contact_list : contactList   // this use for FOR-LOOP in ejs to connect the ejs FOR-LOOP name and contactList are same
-    });
+module.exports.home = async function (req, res) {
+
+    try {
+
+        let contact = await Contact.find({});
+        
+        return res.render("home", {
+            title : "Contact List",
+            contact_list : contact
+        });
+
+    } catch (err) {
+        console.log("Error in Showing, Error is ", err);
+    }
 }
 
 module.exports.creatContact = async function (req, res) {
-    // console.log(req.body);
-
-    // contactList.push(req.body);  // ==> this add the deta in constectList 
-
+    
     try {
         
-        await Contact.create({
+        let contact = await Contact.create({
             name : req.body.name,
             phone : req.body.phone
         });
@@ -28,18 +34,19 @@ module.exports.creatContact = async function (req, res) {
     }
 }
 
-module.exports.deleteContact = function (req, res) {
-    // console.log(req.query);
+module.exports.deleteContact = async function (req, res) {
 
-    let phoneNumber = req.query.phone;
-    // console.log(phoneNumber);
+    try {
 
-    let contactIndex = contectList.findIndex(contact => contact.phone == phoneNumber);
-    // console.log(contactIndex);
-
-    if( contactIndex != 1) {
-        contectList.splice(contactIndex, 1);
+        let id = req.query.id;
+    
+        let deleteContact = await Contact.findByIdAndDelete(id);
+        
+        return res.redirect('back');
+        
+    } catch (err) {
+        console.log("Error in Deleteing, Error is ", err);
     }
 
-    return res.redirect('back');
+
 }

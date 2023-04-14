@@ -52,7 +52,6 @@ ul {
 }
 
 #input-box {
-    /* border: 1px solid black; */
     margin: auto;
     display: flex;
     justify-content: flex-end;
