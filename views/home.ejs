@@ -10,67 +10,110 @@
 </head>
 <body>
 
-    <h1>
-        <i class="fa-solid fa-address-book"></i> 
-        Contact List
-    </h1>
+    <div id="container">
 
-    <div id="list-container">
-
-        <ul id="list-ul">
-            <% for(let i of contact_list) { %>
+        <!-- header title  -->
+        <h1>
+            <i class="fa-solid fa-address-book"></i> 
+            Contact List
+        </h1>
+        
+        <!-- stack of all contact list -->
+        <div id="list-container">
     
-                <li id="list-li">
+            <!-- contain all the user details -->
+            <ul id="list-ul">
+                <% for(let i of contact_list) { %>
+        
+                    <!-- contain one persone details -->
+                    <li id="list-li">
+                        
+                        <!-- container of one person details -->
+                        <div id="details">
+                            
+                            <!-- input box of name -->
+                            <div id="name-container" class="detail-container">
+    
+                                <p id="name" class="element"> 
+                                    <i class="fa-solid fa-user"></i>
+                                    <%= i.name  %> 
+                                </p>
+    
+                            </div>
 
-                    <div id="details">
+                            <!-- input box of phone -->
+                            <div id="phone-container" class="detail-container">
+    
+                                <p id="phone" class="element">
+                                    <i class="fa-solid fa-phone"></i>
+                                     <%= i.phone  %> 
+                                </p>
+    
+                            </div>
+                               
+                            <!-- delete button -->
+                            <div id="delete-btn">
+                                <!-- <a href="/delete-contact/<%= i.phone %>"> this line for param -->
+                                    
+                                <a href="/delete-contact/?phone=<%= i.phone %>">  
+                                <!-- this line for query ==> url/?key = value & key = value ** as you can make many key -->
+                                    
+                                    <i class="fa-solid fa-trash"></i>
 
-                        <div id="name-container" class="detail-container">
-
-                            <p id="name" class="element"> 
-                                <i class="fa-solid fa-user"></i>
-                                <%= i.name  %> 
-                            </p>
+                                </a>
+                            </div>
 
                         </div>
 
-                        <div id="phone-container" class="detail-container">
+                    </li>
+        
+                <% } %>
+        
+            </ul>
+    
+        </div>
+    
+        <!-- header of form -->
+        <h2>
+            <i class="fa-solid fa-paperclip"></i>
+            Add Contacts
+        </h2>
 
-                            <p id="phone" class="element">
-                                <i class="fa-solid fa-phone"></i>
-                                 <%= i.phone  %> 
-                            </p>
+        <!-- form of adding contact details -->
+        <form action="/create-contact" method="post">
 
-                        </div>
+            <div id="form-container">
 
-
+                <!-- takeing name and phone number  -->
+                <div id="input-box">
+    
+                    <div id="form-name" class="input-np">
+    
+                        <label for="name">Name :</label>
+                        <input type="text" class="input-box-size" name="name" placeholder="Your Name..." required>
+    
                     </div>
-                </li>
     
-            <% } %>
+                    <div id="form-phone" class="input-np">
     
-        </ul>
+                        <label for="phone">Phone no :</label>
+                        <input type="number" class="input-box-size" name="phone" placeholder="Your Phone..." required>
+            
+                    </div>
+        
+                    
+                </div>
+    
+                <!-- submiting the name and phone number -->
+                <div id="submit-box">
+                    <button type="submit">Add Contact</button>
+                </div>
+
+            </div>
+            
+        </form>
 
     </div>
-
-    <h2>
-        <i class="fa-solid fa-paperclip"></i>
-        Add Contacts
-    </h2>
-
-    <form action="/create-contact" method="post">
-        
-        <div id="form-deta-div">
-
-            <label for="name">Name :</label>
-            <input type="text" name="name" placeholder="Your Name" required>
-            
-            <label for="phone">Phone no :</label>
-            <input type="number" name="phone" placeholder="Your Phone" required>
-
-        </div>
-        <!-- <input type="submit" value="Add Contact"> -->
-        <button type="submit">Add Contac</button>
-    </form>
 
 </body>
 </html>
