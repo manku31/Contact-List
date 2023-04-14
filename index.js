@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
+const db = require("./config/mongoose");    // ==> path of db 
+
 // setup view engine
 app.set("view engine", "ejs");
 app.set("views", 'views');
@@ -23,5 +25,5 @@ app.listen(port, function (err) {
         console.log(`Error in the Server, The Error is ${err}`);
     }
 
-    console.log(`Server Running Fine on Port : ${port}`); 
-}) 
+    console.log(`Server Running Fine on Port : ${port}`);
+});

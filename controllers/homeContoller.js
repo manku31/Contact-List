@@ -1,18 +1,31 @@
-var contectList = []
+const Contact = require('../models/Contact');        // ==> path of Schema
+
+var contactList = []
 
 module.exports.home = function (req, res) {
     return res.render("home", {
         title : "Contact List",
-        contact_list : contectList   // this use for FOR-LOOP in ejs to connect the ejs FOR-LOOP name and contactList are same
+        contact_list : contactList   // this use for FOR-LOOP in ejs to connect the ejs FOR-LOOP name and contactList are same
     });
 }
 
-module.exports.creatContact = function (req, res) {
+module.exports.creatContact = async function (req, res) {
     // console.log(req.body);
 
-    contectList.push(req.body);
+    // contactList.push(req.body);  // ==> this add the deta in constectList 
 
-    return res.redirect('back');
+    try {
+        
+        await Contact.create({
+            name : req.body.name,
+            phone : req.body.phone
+        });
+
+        return res.redirect('back');
+
+    } catch (err) {
+        console.log("Error in Creating, Error is ", err);
+    }
 }
 
 module.exports.deleteContact = function (req, res) {
