@@ -2,6 +2,7 @@ const Contact = require('../models/Contact');
 
 var contactList = []
 
+// Showing contact to the home page
 module.exports.home = async function (req, res) {
 
     try {
@@ -18,6 +19,7 @@ module.exports.home = async function (req, res) {
     }
 }
 
+// Adding new Contact to the Database
 module.exports.creatContact = async function (req, res) {
     
     try {
@@ -34,6 +36,8 @@ module.exports.creatContact = async function (req, res) {
     }
 }
 
+
+// Delete the contact from Database
 module.exports.deleteContact = async function (req, res) {
 
     try {
@@ -47,6 +51,5 @@ module.exports.deleteContact = async function (req, res) {
     } catch (err) {
         console.log("Error in Deleteing, Error is ", err);
     }
-
 
 }
