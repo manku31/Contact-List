@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 8000;
+const port = process.env.port || 8000;
 
 const cookieParser = require('cookie-parser');          // its help to view the cookie
 const db = require("./config/mongoose");                // database
